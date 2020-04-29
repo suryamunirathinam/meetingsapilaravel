@@ -3,7 +3,7 @@
   "info": {
     "title": "Meetings Api ",
     "version": "1.0",
-    "description": "Manage meetings and gives ability for the users to register and unregister a meeting"
+    "description": "Manage meetings api \n- create user\n- user signin\n- create meeting\n- update meeting\n- delete meeting\n- unregister meeting\n"
   },
   "servers": [
     {
@@ -101,14 +101,6 @@
       "post": {
         "summary": "create user",
         "tags": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "NaN": {
-            "description": ""
-          }
-        },
         "operationId": "post-user",
         "description": "Create user ",
         "requestBody": {
@@ -164,7 +156,12 @@
             "in": "header",
             "description": ""
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/meeting/{meeting_id}": {
