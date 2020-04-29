@@ -1,0 +1,338 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Meetings Api ",
+    "version": "1.0",
+    "description": "Manage meetings and gives ability for the users to register and unregister a meeting"
+  },
+  "servers": [
+    {
+      "url": "http://localhost/api/v1"
+    }
+  ],
+  "paths": {
+    "meeting": {
+      "get": {
+        "summary": "Get Meetings",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {}
+          },
+          "": {
+            "description": "Successful "
+          }
+        },
+        "operationId": "get-api-v1-meeting",
+        "description": "Get the list of all registered meetings\n",
+        "parameters": [
+          {
+            "schema": {},
+            "in": "header",
+            "name": "Accept",
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/xhtml+xml": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "description": ""
+        }
+      },
+      "parameters": [],
+      "post": {
+        "summary": "Create Meeting",
+        "operationId": "postmeeting",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Create Meeting",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "time": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "user_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "summary": "create user",
+        "tags": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "NaN": {
+            "description": ""
+          }
+        },
+        "operationId": "post-user",
+        "description": "Create user ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "email",
+                  "password"
+                ]
+              },
+              "examples": {
+                "example-1": {}
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          },
+          "description": ""
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "/meeting/{meeting_id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "meeting_id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get info regarding a specific meeting",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-meeting-id",
+        "description": "Get the details of the specific meetings"
+      },
+      "patch": {
+        "summary": "",
+        "operationId": "patch-meeting-meeting_id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Update contents of the meeting",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "time": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-meeting",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "Delete the meeting with the specified id"
+      }
+    },
+    "/meeting/registration": {
+      "post": {
+        "summary": "register for the meeting",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "Registerd"
+          }
+        },
+        "operationId": "post-meeting-registration",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string"
+                  },
+                  "meeting_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Register user for the meeting"
+      }
+    },
+    "/meeting/registration/{meeting_id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "meeting_id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "delete": {
+        "summary": "Unregister for meeting",
+        "tags": [],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "operationId": "delete-meeting-registration-meeting_id",
+        "description": "Delete the meeting with the specified id",
+        "requestBody": {
+          "description": ""
+        },
+        "parameters": []
+      }
+    },
+    "/user/signin": {
+      "post": {
+        "summary": "sign in to the user",
+        "tags": [],
+        "operationId": "post-user-signin",
+        "description": "Sign to the user",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {}
+  }
+}
